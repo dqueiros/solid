@@ -1,5 +1,5 @@
 ﻿
-namespace CursoCSharp.APalavrathis
+namespace CursoCSharp.APalavraThis
 {
     public class FuncionarioExemplo01
     {
