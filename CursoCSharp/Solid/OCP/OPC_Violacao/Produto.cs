@@ -54,7 +54,7 @@ namespace Solid.OCP.OPC_Violacao
             }
             catch (Exception)
             {
-                throw new InvalidOperationException("Erro ao calcular a margem de lucro")
+                throw new InvalidOperationException("Erro ao calcular a margem de lucro");
             }
         }
     }
