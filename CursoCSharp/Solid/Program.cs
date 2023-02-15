@@ -1,4 +1,4 @@
-﻿using Solid.LSP.Violacao1.LSP_Violacao;
+﻿using Solid.LSP.Violacao1.LSP_Aderente;
 
 Funcionario func1 = new Gerente("Paulo", "Cargo");
 Console.WriteLine(func1.GetType());
