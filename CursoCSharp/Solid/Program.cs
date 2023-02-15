@@ -1,10 +1,13 @@
-﻿using Solid.LSP.Violacao2.LSP_Aderente;
+﻿using Solid.LSP.Violacao3.LSP_Violacao;
 
-var numeros = new int[] { 5, 7, 9, 8, 1, 6, 4 };
+Passaro passaro1 = new Pato("Donald");
+passaro1.Comer();
+passaro1.BotarOvos();
+passaro1.Voar();
 
-Calculadora somaNumeros = new CalculaSoma(numeros);
-Console.WriteLine($"\nA soma dos números é : {somaNumeros.Calcular()}");
+Passaro passaro2 = new Pinguim("Willy");
+passaro2.Comer();
+passaro2.BotarOvos();
+passaro2.Voar();
 
-Calculadora somaPares = new  CalculaSomaNumerosPares(numeros);
-Console.WriteLine($"\nA soma dos números Pares é : {somaPares.Calcular()}");
 
