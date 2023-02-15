@@ -1,4 +1,5 @@
-﻿using Solid.OCP.OPC_Violacao;
+﻿using Solid.OCP.ExtensionMethod.OCP_Aderente;
+using Solid.OCP.ExtensionMethod.OCP_Aderente.Extensions;
 
 Produto produto1 = new Produto(
     1,
@@ -9,7 +10,7 @@ Produto produto1 = new Produto(
     100,
     true);
 
-Console.WriteLine($"{produto1.Nome} Lucro = {produto1.MargemLucro()}");
+Console.WriteLine($"Produto = {produto1.Nome} Lucro = {produto1.MargemLucro()}");
 
 
 
