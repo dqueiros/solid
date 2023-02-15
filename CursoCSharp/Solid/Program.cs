@@ -1,15 +1,18 @@
-﻿using Solid.OCP.OpenClosed.OCP_Aderente;
+﻿using Solid.LSP.Violacao1.LSP_Violacao;
 
-Pedido pedidoVip= new DescontoClienteVIP();
-Console.WriteLine($"Desconto cliente VIP : {pedidoVip.DescontoPedido(200).ToString("C")}");
+Funcionario func1 = new Gerente("Paulo", "Cargo");
+Console.WriteLine(func1.GetType());
 
-Pedido pedidoAssociado = new DescontoClienteAssociando();
-Console.WriteLine($"Desconto cliente Associado : {pedidoAssociado.DescontoPedido(200).ToString("C")}");
+Funcionario func2 = new Vendedor("Paulo", "Cargo");
+Console.WriteLine(func2.GetType());
 
-Pedido pedidoEspecial = new DescontoClienteEspecial();
-Console.WriteLine($"Desconto cliente Espcial : {pedidoEspecial.DescontoPedido(200).ToString("C")}");
+Console.WriteLine("Salário do Gerente");
+var sal1 = func1.CalculaSalario(5000);
+Console.WriteLine(sal1);
 
-
+Console.WriteLine("Salário do Vendedor");
+var sal2 = func2.CalculaSalario(3000);
+Console.WriteLine(sal2);
 
 
 
