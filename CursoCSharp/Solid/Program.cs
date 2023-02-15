@@ -1,16 +1,15 @@
-﻿using Solid.OCP.ExtensionMethod.OCP_Aderente;
-using Solid.OCP.ExtensionMethod.OCP_Aderente.Extensions;
+﻿using Solid.OCP.OpenClosed.OCP_Aderente;
 
-Produto produto1 = new Produto(
-    1,
-    "Caneta",
-    "Caneta Esferográfica azul",
-    2.00M,
-    3.40M,
-    100,
-    true);
+Pedido pedidoVip= new DescontoClienteVIP();
+Console.WriteLine($"Desconto cliente VIP : {pedidoVip.DescontoPedido(200).ToString("C")}");
 
-Console.WriteLine($"Produto = {produto1.Nome} Lucro = {produto1.MargemLucro()}");
+Pedido pedidoAssociado = new DescontoClienteAssociando();
+Console.WriteLine($"Desconto cliente Associado : {pedidoAssociado.DescontoPedido(200).ToString("C")}");
+
+Pedido pedidoEspecial = new DescontoClienteEspecial();
+Console.WriteLine($"Desconto cliente Espcial : {pedidoEspecial.DescontoPedido(200).ToString("C")}");
+
+
 
 
 
