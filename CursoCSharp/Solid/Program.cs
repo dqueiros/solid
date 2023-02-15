@@ -1,18 +1,15 @@
-﻿using Solid.LSP.Violacao1.LSP_Aderente;
+﻿using Solid.LSP.Violacao2.LSP_Violacao;
 
-Funcionario func1 = new Gerente("Paulo", "Cargo");
-Console.WriteLine(func1.GetType());
+var numeros = new int[] { 5, 7, 9, 8, 1, 6, 4 };
 
-Funcionario func2 = new Vendedor("Paulo", "Cargo");
-Console.WriteLine(func2.GetType());
+CalculaSoma somaNumeros = new CalculaSoma(numeros);
+Console.WriteLine($"\nA soma dos números é : {somaNumeros.Calcular()}");
 
-Console.WriteLine("Salário do Gerente");
-var sal1 = func1.CalculaSalario(5000);
-Console.WriteLine(sal1);
+CalculaSomaNumerosPares somaPares = new CalculaSomaNumerosPares(numeros);
+Console.WriteLine($"\nA soma dos números pares é : {somaPares.Calcular()}");
 
-Console.WriteLine("Salário do Vendedor");
-var sal2 = func2.CalculaSalario(3000);
-Console.WriteLine(sal2);
-
-
+//Substituindo a instância da classe base
+//por uma instância de classe derivada
+CalculaSoma soma = new CalculaSomaNumerosPares(numeros);
+Console.WriteLine($"\nA soma dos números é : {soma.Calcular()}");
 
