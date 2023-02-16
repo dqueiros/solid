@@ -1,13 +1,13 @@
-﻿using Solid.LSP.Violacao3.LSP_Aderente;
+﻿using Solid.ISP.ISP_Violacao;
+using Solid.LSP.Violacao3.LSP_Aderente;
 
-PassarosVoadores passaro1 = new Pato("Donald");
-passaro1.Comer();
-passaro1.BotarOvos();
-passaro1.Voar();
+CadastrarCliente cliente = new CadastrarCliente();
+cliente.ValidarDados();
+cliente.SalvarDados();
+cliente.EnviarEmail();
 
-Passaro passaro2 = new Pinguim("Willy");
-passaro2.Comer();
-passaro2.BotarOvos();
-//passaro2.Voar();
-
+CadastrarProduto produto = new CadastrarProduto();
+produto.ValidarDados();
+produto.SalvarDados();
+produto.EnviarEmail();
 
