@@ -1,11 +1,7 @@
-﻿using Solid.ISP.ISP_Aderente;
+﻿using Solid.DIP.DIP_Aderente;
 
-CadastrarCliente cliente = new CadastrarCliente();
-cliente.ValidarDados();
-cliente.SalvarDados();
-cliente.EnviarEmail();
+var connection = new MySqlConnection();
 
-CadastrarProduto produto = new CadastrarProduto();
-produto.ValidarDados();
-produto.SalvarDados();
+RecuperarSenha recuperarSenha = new RecuperarSenha(connection);
+recuperarSenha.ConnectioDb();
 
