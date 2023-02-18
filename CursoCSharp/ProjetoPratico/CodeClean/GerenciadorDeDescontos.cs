@@ -1,4 +1,5 @@
 ﻿
+using ProjetoPratico.CodeClean.Cliente;
 using ProjetoPratico.CodeClean.Interfaces;
 using System.Runtime.CompilerServices;
 
@@ -21,22 +22,19 @@ public partial class GerenciadorDeDescontos
         switch (statusContaCliente)
         {
             case StatusContaCliente.NaoRegistrado:
-                precoDepoisDoDesconto = preco;
+                precoDepoisDoDesconto = new ClienteNaoRegistrado().AplicarDescontoStatusConta(preco);
                 break;
             case StatusContaCliente.ClienteComum:
-                precoDepoisDoDesconto = (preco - (Constantes.DESCONTO_CLIENTE_COMUM * preco));
-                precoDepoisDoDesconto = 
-                    _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
+                precoDepoisDoDesconto = new ClienteComum().AplicarDescontoStatusConta(preco);
+                precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
                 break;
             case StatusContaCliente.ClienteEspecial:
-                precoDepoisDoDesconto = (preco - (Constantes.DESCONTO_CLIENTE_ESPECIAL * preco));
-                precoDepoisDoDesconto =
-                    _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
+                precoDepoisDoDesconto = new ClienteEspecial().AplicarDescontoStatusConta(preco);
+                precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
                 break;
             case StatusContaCliente.ClienteVIP:
-                precoDepoisDoDesconto = (preco - (Constantes.DESCONTO_CLIENTE_VIP * preco));
-                precoDepoisDoDesconto =
-                    _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
+                precoDepoisDoDesconto = new ClienteVIP().AplicarDescontoStatusConta(preco);
+                precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
                 break;
             default:
                 throw new NotImplementedException();
