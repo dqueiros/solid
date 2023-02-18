@@ -1,4 +1,6 @@
 ﻿using ProjetoPratico.CodeSmell;
+using ProjetoPratico.CodeClean;
+
 
 class Program
 {
@@ -9,19 +11,34 @@ class Program
 
     static void Main(string[] args)
     {
-        GerDesc gerdesc = new GerDesc();
-        Console.WriteLine("10 anos");
-        Console.WriteLine($"Cliente: {CLIENTETIPO1} desconto: {gerdesc.Calcular(1000, CLIENTETIPO1, 10)}");
-        Console.WriteLine($"Cliente: {CLIENTETIPO2} desconto: {gerdesc.Calcular(1000, CLIENTETIPO2, 10)}");
-        Console.WriteLine($"Cliente: {CLIENTETIPO3} desconto: {gerdesc.Calcular(1000, CLIENTETIPO3, 10)}");
-        Console.WriteLine($"Cliente: {CLIENTETIPO4} desconto: {gerdesc.Calcular(1000, CLIENTETIPO4, 10)}");
+        Console.WriteLine("Code Smell");
+
+        GerDesc gerDesc = new GerDesc();
+        Console.WriteLine("Valor da compra 1000 e fidelidade 10 anos (5%)\n");
+
+        var resultado1 = gerDesc.Calcular(1000, 2, 10);
+        Console.WriteLine($"Cliente tipo 2, 10 anos fidelidade, = {resultado1}");
+
+        var resultado2 = gerDesc.Calcular(1000, 3, 10);
+        Console.WriteLine($"Cliente tipo 3, 10 anos fidelidade, = {resultado2}");
+
+        var resultado3 = gerDesc.Calcular(1000, 4, 10);
+        Console.WriteLine($"Cliente tipo 4, 10 anos fidelidade, = {resultado3}");
 
         Console.WriteLine(new String('-',40));
 
-        Console.WriteLine("10 anos");
-        Console.WriteLine($"Cliente: {CLIENTETIPO1} desconto: {gerdesc.Calcular(1000, CLIENTETIPO1, 4)}");
-        Console.WriteLine($"Cliente: {CLIENTETIPO2} desconto: {gerdesc.Calcular(1000, CLIENTETIPO2, 4)}");
-        Console.WriteLine($"Cliente: {CLIENTETIPO3} desconto: {gerdesc.Calcular(1000, CLIENTETIPO3, 4)}");
-        Console.WriteLine($"Cliente: {CLIENTETIPO4} desconto: {gerdesc.Calcular(1000, CLIENTETIPO4, 4)}");
+        Console.WriteLine("Valor da compra 1000 e fidelidade 4 anos (5%)\n");
+
+        var resultado4 = gerDesc.Calcular(1000, 2, 4);
+        Console.WriteLine($"Cliente tipo 4, 10 anos fidelidade, = {resultado4}");
+
+        var resultado5 = gerDesc.Calcular(1000, 3, 4);
+        Console.WriteLine($"Cliente tipo 4, 10 anos fidelidade, = {resultado5}");
+
+        var resultado6 = gerDesc.Calcular(1000, 4, 4);
+        Console.WriteLine($"Cliente tipo 4, 10 anos fidelidade, = {resultado6}");
+
+
+
     }
 }
