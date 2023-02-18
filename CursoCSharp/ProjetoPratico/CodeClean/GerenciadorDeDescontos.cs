@@ -7,8 +7,8 @@ public partial class GerenciadorDeDescontos
     {
         decimal precoAposDesconto = 0;
 
-        decimal descontoPorFidelidade = (tempoDeContasEmAnos > 5) ? 
-            (decimal)5 / 100 : 
+        decimal descontoPorFidelidade = (tempoDeContasEmAnos > Constantes.DESCONTO_MAXIMO_POR_FIDELIDADE) ? 
+            (decimal)Constantes.DESCONTO_MAXIMO_POR_FIDELIDADE / 100 : 
             (decimal)tempoDeContasEmAnos / 100;
 
         switch (statusContaCliente)
@@ -17,15 +17,15 @@ public partial class GerenciadorDeDescontos
                 precoAposDesconto = precoProduto;
                 break;
             case StatusContaCliente.ClienteComum:
-                precoAposDesconto = (precoProduto - (0.1m * precoProduto)) - 
-                    descontoPorFidelidade * (precoProduto - (0.1m * precoProduto));
+                precoAposDesconto = (precoProduto - (Constantes.DESCONTO_CLIENTE_COMUM * precoProduto)) - 
+                    descontoPorFidelidade * (precoProduto - (Constantes.DESCONTO_CLIENTE_COMUM * precoProduto));
                 break;
             case StatusContaCliente.ClienteEspecial:
-                precoAposDesconto = (precoProduto - (0.3m * precoProduto)) - 
-                    descontoPorFidelidade * (precoProduto - (0.3m * precoProduto)); break;
+                precoAposDesconto = (precoProduto - (Constantes.DESCONTO_CLIENTE_ESPECIAL * precoProduto)) - 
+                    descontoPorFidelidade * (precoProduto - (Constantes.DESCONTO_CLIENTE_ESPECIAL * precoProduto)); break;
             case StatusContaCliente.ClienteVIP:
-                precoAposDesconto = (precoProduto - (0.5m * precoProduto)) - 
-                    descontoPorFidelidade * (precoProduto - (0.5m * precoProduto));
+                precoAposDesconto = (precoProduto - (Constantes.DESCONTO_CLIENTE_VIP * precoProduto)) - 
+                    descontoPorFidelidade * (precoProduto - (Constantes.DESCONTO_CLIENTE_VIP * precoProduto));
                 break;
             default:
                 throw new NotImplementedException();
