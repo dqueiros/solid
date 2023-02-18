@@ -1,11 +1,22 @@
 ﻿
+using ProjetoPratico.CodeClean.Interfaces;
+using System.Runtime.CompilerServices;
+
 namespace ProjetoPratico.CodeClean;
 
 public partial class GerenciadorDeDescontos
 {
-    public decimal AplicarDesconto(decimal precoProduto, StatusContaCliente statusContaCliente, int tempoDeContasEmAnos)
+            private readonly ICalculaDescontoFidelidade _descontoFidelidade;
+
+        public GerenciadorDeDescontos(ICalculaDescontoFidelidade descontoFidelidade)
+        {
+            _descontoFidelidade = descontoFidelidade;
+        }
+
+    public decimal AplicarDesconto(decimal preco, StatusContaCliente statusContaCliente, int tempoDeContasEmAnos)
     {
-        decimal precoAposDesconto = 0;
+
+        decimal precoDepoisDoDesconto = 0;
 
         decimal descontoPorFidelidade = (tempoDeContasEmAnos > Constantes.DESCONTO_MAXIMO_POR_FIDELIDADE) ? 
             (decimal)Constantes.DESCONTO_MAXIMO_POR_FIDELIDADE / 100 : 
@@ -14,22 +25,26 @@ public partial class GerenciadorDeDescontos
         switch (statusContaCliente)
         {
             case StatusContaCliente.NaoRegistrado:
-                precoAposDesconto = precoProduto;
+                precoDepoisDoDesconto = preco;
                 break;
             case StatusContaCliente.ClienteComum:
-                precoAposDesconto = (precoProduto - (Constantes.DESCONTO_CLIENTE_COMUM * precoProduto)) - 
-                    descontoPorFidelidade * (precoProduto - (Constantes.DESCONTO_CLIENTE_COMUM * precoProduto));
+                precoDepoisDoDesconto = (preco - (Constantes.DESCONTO_CLIENTE_COMUM * preco));
+                precoDepoisDoDesconto = 
+                    _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
                 break;
             case StatusContaCliente.ClienteEspecial:
-                precoAposDesconto = (precoProduto - (Constantes.DESCONTO_CLIENTE_ESPECIAL * precoProduto)) - 
-                    descontoPorFidelidade * (precoProduto - (Constantes.DESCONTO_CLIENTE_ESPECIAL * precoProduto)); break;
+                precoDepoisDoDesconto = (preco - (Constantes.DESCONTO_CLIENTE_ESPECIAL * preco));
+                precoDepoisDoDesconto =
+                    _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
+                break;
             case StatusContaCliente.ClienteVIP:
-                precoAposDesconto = (precoProduto - (Constantes.DESCONTO_CLIENTE_VIP * precoProduto)) - 
-                    descontoPorFidelidade * (precoProduto - (Constantes.DESCONTO_CLIENTE_VIP * precoProduto));
+                precoDepoisDoDesconto = (preco - (Constantes.DESCONTO_CLIENTE_VIP * preco));
+                precoDepoisDoDesconto =
+                    _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
                 break;
             default:
                 throw new NotImplementedException();
         }
-        return precoAposDesconto;
+        return precoDepoisDoDesconto;
     }
 }
