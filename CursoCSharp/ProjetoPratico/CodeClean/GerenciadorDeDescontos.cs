@@ -23,6 +23,7 @@ public partial class GerenciadorDeDescontos
         {
             case StatusContaCliente.NaoRegistrado:
                 precoDepoisDoDesconto = new ClienteNaoRegistrado().AplicarDescontoStatusConta(preco);
+                precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
                 break;
             case StatusContaCliente.ClienteComum:
                 precoDepoisDoDesconto = new ClienteComum().AplicarDescontoStatusConta(preco);
