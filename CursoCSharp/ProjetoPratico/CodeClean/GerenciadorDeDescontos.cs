@@ -28,6 +28,8 @@ public partial class GerenciadorDeDescontos
                 precoAposDesconto = (precoProduto - (0.5m * precoProduto))
                     - descontoPorFidelidade * (precoProduto - (0.5m * precoProduto));
                 break;
+            default:
+                throw new NotImplementedException();
         }
         return precoAposDesconto;
     }
