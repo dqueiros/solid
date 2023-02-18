@@ -1,6 +1,6 @@
 ﻿
-namespace ProjetoPratico
-{
+namespace ProjetoPratico.CodeSmell;
+
 public class GerDesc
 {
 public decimal Calcular(decimal valor, int tipo, int anos)
@@ -24,6 +24,5 @@ else if (tipo == 4)
 resultado = (valor - (0.5m * valor)) - desc * (valor - (0.5m * valor));
 }
 return resultado;
-}
 }
 }
