@@ -21,12 +21,11 @@ public partial class GerenciadorDeDescontos
                     descontoPorFidelidade * (precoProduto - (0.1m * precoProduto));
                 break;
             case StatusContaCliente.ClienteEspecial:
-                precoAposDesconto = (0.7m * precoProduto) -
-                    descontoPorFidelidade * (0.7m * precoProduto);
-                break;
+                precoAposDesconto = (precoProduto - (0.3m * precoProduto)) - 
+                    descontoPorFidelidade * (precoProduto - (0.3m * precoProduto)); break;
             case StatusContaCliente.ClienteVIP:
-                precoAposDesconto = (precoProduto - (0.5m * precoProduto))
-                    - descontoPorFidelidade * (precoProduto - (0.5m * precoProduto));
+                precoAposDesconto = (precoProduto - (0.5m * precoProduto)) - 
+                    descontoPorFidelidade * (precoProduto - (0.5m * precoProduto));
                 break;
             default:
                 throw new NotImplementedException();
