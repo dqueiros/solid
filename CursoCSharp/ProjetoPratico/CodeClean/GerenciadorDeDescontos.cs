@@ -7,39 +7,23 @@ namespace ProjetoPratico.CodeClean;
 
 public partial class GerenciadorDeDescontos
 {
-            private readonly ICalculaDescontoFidelidade _descontoFidelidade;
-
-        public GerenciadorDeDescontos(ICalculaDescontoFidelidade descontoFidelidade)
-        {
-            _descontoFidelidade = descontoFidelidade;
-        }
+    private readonly ICalculaDescontoFidelidade _descontoFidelidade;
+    private readonly ICalculaDescontoStatusContaFactory _descontoStatusConta;
+    public GerenciadorDeDescontos(ICalculaDescontoFidelidade descontoFidelidade, ICalculaDescontoStatusContaFactory descontoStatusConta)
+    {
+        _descontoFidelidade = descontoFidelidade;
+        _descontoStatusConta = descontoStatusConta;
+    }
 
     public decimal AplicarDesconto(decimal preco, StatusContaCliente statusContaCliente, int tempoDeContasEmAnos)
     {
 
         decimal precoDepoisDoDesconto = 0;
 
-        switch (statusContaCliente)
-        {
-            case StatusContaCliente.NaoRegistrado:
-                precoDepoisDoDesconto = new ClienteNaoRegistrado().AplicarDescontoStatusConta(preco);
-                precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
-                break;
-            case StatusContaCliente.ClienteComum:
-                precoDepoisDoDesconto = new ClienteComum().AplicarDescontoStatusConta(preco);
-                precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
-                break;
-            case StatusContaCliente.ClienteEspecial:
-                precoDepoisDoDesconto = new ClienteEspecial().AplicarDescontoStatusConta(preco);
-                precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
-                break;
-            case StatusContaCliente.ClienteVIP:
-                precoDepoisDoDesconto = new ClienteVIP().AplicarDescontoStatusConta(preco);
-                precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
-                break;
-            default:
-                throw new NotImplementedException();
-        }
+        precoDepoisDoDesconto = 
+            _descontoStatusConta.GetCalculoDescontoConta(statusContaCliente).AplicarDescontoStatusConta(preco);
+
+        precoDepoisDoDesconto = _descontoFidelidade.AplicarDescontoFidelidade(precoDepoisDoDesconto, tempoDeContasEmAnos);
         return precoDepoisDoDesconto;
     }
 }
