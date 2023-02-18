@@ -18,10 +18,6 @@ public partial class GerenciadorDeDescontos
 
         decimal precoDepoisDoDesconto = 0;
 
-        decimal descontoPorFidelidade = (tempoDeContasEmAnos > Constantes.DESCONTO_MAXIMO_POR_FIDELIDADE) ? 
-            (decimal)Constantes.DESCONTO_MAXIMO_POR_FIDELIDADE / 100 : 
-            (decimal)tempoDeContasEmAnos / 100;
-
         switch (statusContaCliente)
         {
             case StatusContaCliente.NaoRegistrado:
